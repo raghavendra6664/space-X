@@ -1,0 +1,212 @@
+body{
+   background-color: #e5eaec;
+}
+#root{
+    display: flex;
+}
+ .right{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+} 
+.left{
+    width: 20%;
+
+}
+ .right-cards{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0;
+}
+.right-cards li {
+    list-style: none;
+    background-color: white;
+    padding: 20px;
+    margin: 5px;
+    max-width: 229px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+.right-cards li h1{
+    font-size: 18px;
+    color:  rgb(17, 85, 204);
+}
+.right-cards li img{
+    width: 89%;
+    background-color: #eaeaea7d;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left{
+    border-radius: 5px;
+    background-color: white;
+    height: max-content;
+}
+.left-cards li{
+    list-style: none;
+    margin: 23px;
+    display: inline-flex;
+}
+.left-cards {
+   margin-top: 2px;
+    padding-right: 40px;
+}
+.left-cards label {
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    font-size: 23px;
+    padding-top: 15px;
+    color: gray;
+    box-shadow: 0 1px #999;
+
+
+}
+.left-cards li button{
+    border: none;
+    background-color: #2ee62e7a;
+    border-radius: 5px;
+    padding: 7px 16px 7px 16px;
+    box-shadow: 0 2px #999;
+    outline: none;
+}
+.left-cards li button:hover{
+    background-color: #52bf0efc;
+}
+
+.left h3{
+    margin: 0 0 0 12px;
+    font-size: 21px;
+}
+.left-cards li button.highlight{
+    background-color: green;
+    color: #fff;
+}
+
+@media only screen and (min-width : 1024px){
+    #root{
+        display: flex;
+    }
+    .left{
+        border-radius: 5px;
+        background-color: white;
+        height: max-content;
+        width: 20%;
+    
+    }
+    .left-cards{
+        
+        padding-left: 20px;
+        padding-right: 20px;
+       text-align: center;
+    }
+    .left-cards li {
+        list-style: none;
+        margin: 20px;
+        width: 25%;
+        display: inline-flex;
+    }
+    .right{
+        width: 80%;
+        
+    }
+    .right-cards{
+        width: 100%;
+        /* justify-content: center; */
+        height: max-content;
+    }
+    .right-cards li {
+        list-style: none;
+        background-color: white;
+        padding: 20px;
+        margin: 0 5px 5px 5px;
+        width: 18%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+    .right-cards{
+        padding-left: 0;
+    }
+
+}
+
+@media only screen and (max-width: 1023px) and (min-width : 700px){
+    #root{
+        display: flex;
+    }
+    .left{
+        border-radius: 5px;
+        background-color: white;
+        height: max-content;
+        width: 40%;
+    
+    }
+    .left-cards{
+        text-align: center;
+        padding: 0;
+    }
+    .left-cards li {
+        list-style: none;
+        margin: 15px 25px;
+        width: 19%;
+        text-align: center;
+        display: inline-flex;
+    }
+    
+    .right-cards li {
+        list-style: none;
+        background-color: white;
+        padding: 20px;
+        margin: 0 5px 5px 5px;
+        width: 39%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+    .right-cards{
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 699px) {
+    #root{
+        display: block;
+    }
+    .left{
+        border-radius: 5px;
+        background-color: white;
+        height: max-content;
+        width: 100%;
+    
+    }
+    .left-cards li {
+        list-style: none;
+        margin: 15px 5px;
+        width: 45%;
+        display: inline-block;
+        text-align: center;
+    }
+    .right{
+        width: 100%;
+    }
+    .right-cards li {
+        list-style: none;
+        background-color: white;
+        padding: 20px;
+        margin: 5px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+    .right-cards{
+        padding-left: 0;
+    }
+}
