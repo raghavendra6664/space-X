@@ -26,12 +26,12 @@ window.addEventListener('load', function () {
 function renderLeft(data){
     var op ="";
     op+="<h3>Filter</h3>";
-    op+="<ul class='left-cards'>";
+    op+="<ul id='top' class='left-cards'>";
    
     op+="<label>Launch Year</label>";
     for(let item in data){ 
         op+="<li>";
-        op+="<button onclick='btnClick("+item+")'>"+item+"</button>";
+        op+="<button id='launch_"+item+"' onclick='btnClick("+item+")'>"+item+"</button>";
         op+="</li>";
     }
     op+="</ul>";
@@ -42,7 +42,7 @@ function renderLeft(data){
 }
 function renderLeftbottom(){
     var op ="";
-    op+="<ul class='left-cards'>";
+    op+="<ul id='bottom' class='left-cards'>";
     op+="<label>SuccessFul Launcher</label>";   
     op+="<li><button id='launch_true' class='launch' onclick='launchClick(true)'>true</button></li>";
     op+="<li><button id='launch_false' class='launch' onclick='launchClick(false)'>false</button></li>";
@@ -58,15 +58,15 @@ function launchClick(v){
     if(currLaunch !== undefined && currLaunch === v){
         currLaunch = undefined;
         document.getElementById(`launch_${v}`).classList.remove('highlight');
+        
     }else{
         currLaunch = v;
         if(document.querySelector('button.launch.highlight') !== null){
             document.querySelector('button.launch.highlight').classList.remove('highlight')
         }
         document.getElementById(`launch_${v}`).classList.add('highlight');
-        commonFun();
     }
-    
+    commonFun();
 }
 function commonFun(){
     if(currYr){
@@ -106,6 +106,14 @@ function commonFun(){
                         }
                     } 
                 }
+            }else{
+                if(acc[currYr]){
+                    acc[currYr][v] = lauchData[currYr][v];
+                }else{
+                    acc[currYr] = {
+                        [v] : lauchData[currYr][v]
+                    }
+                }
             }
             return acc;
         }, {});
@@ -137,7 +145,9 @@ function commonFun(){
         console.log('no yr selected', filData);
         defaultRender(filData);
     }
+    
 }
+
 function landClick(v){
     if(currLand !== undefined && currLand === v){
         currLand = undefined;
@@ -147,10 +157,9 @@ function landClick(v){
         if(document.querySelector('button.land.highlight') !== null){
             document.querySelector('button.land.highlight').classList.remove('highlight')
         }
-        document.getElementById(`land_${v}`).classList.add('highlight');
-        commonFun();
+        document.getElementById(`land_${v}`).classList.add('highlight'); 
     }
-    
+    commonFun();
 }
 
 function defaultRender(data){
@@ -159,14 +168,14 @@ function defaultRender(data){
     for(let item in data){
         let each = data[item];
         for(let key in each){
-                op+="<li>";
-                op+="<img src="+each[key].links.mission_patch_small+" />" ? "<img src="+each[key].links.mission_patch_small+" />" : null;
-                op+="<h1>"+each[key].mission_name+" # "+each[key].flight_number+"</h1>";
-                op+="<p>Mission_Id : "+each[key].mission_id+"</p>";
-                op+="<p>Launch_Year : "+each[key].launch_year+"</p>";
-                op+="<p>SuccessFull_Launches : "+each[key].launch_success+"</p>";
-                op+="<p>SuccessFull_Landings : "+each[key].rocket.first_stage.cores[0].land_success+"</p>";
-                op+="</li>";
+            op+="<li>";
+            op+="<img src="+each[key].links.mission_patch_small+" />";
+            op+="<h1>"+each[key].mission_name+" # "+each[key].flight_number+"</h1>";
+            op+="<p>Mission_Id : "+each[key].mission_id+"</p>";
+            op+="<p>Launch_Year : "+each[key].launch_year+"</p>";
+            op+="<p>SuccessFull_Launches : "+each[key].launch_success+"</p>";
+            op+="<p>SuccessFull_Landings : "+each[key].rocket.first_stage.cores[0].land_success+"</p>";
+            op+="</li>";
         }
     }
     op+="</ul>";
@@ -187,8 +196,14 @@ function renderRight(data){
     document.querySelector(".right .right-cards").innerHTML=op;
 }
 function btnClick(v){
-    console.log('btnClick :::::', v, lauchData);
+    // console.log('btnClick :::::', v, lauchData);
     currYr = v;
-    renderRight(lauchData[v])
+    if(document.querySelector('#top button.highlight') !== null){
+        document.querySelector('#top button.highlight').classList.remove('highlight')
+    }
+    document.getElementById(`launch_${v}`).classList.add('highlight');
+    //renderRight(lauchData[v])
+    commonFun();
 }
+
 
